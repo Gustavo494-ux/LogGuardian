@@ -1,4 +1,4 @@
-package Gerenciadordejson
+package GerenciadordeJson
 
 import "encoding/json"
 

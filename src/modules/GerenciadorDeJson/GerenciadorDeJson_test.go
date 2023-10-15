@@ -1,7 +1,7 @@
-package Gerenciadordejson_test
+package GerenciadordeJson_test
 
 import (
-	"LogGuardian/src/modules/GerenciadorDeJson"
+	"LogGuardian/src/modules/GerenciadordeJson"
 	"testing"
 )
 
@@ -11,7 +11,7 @@ func TestInterfaceParaJsonString(t *testing.T) {
 		Idade int    `json:"idade"`
 	}
 	p := Pessoa{"João", 30}
-	jsonStr, err := Gerenciadordejson.InterfaceParaJsonString(p)
+	jsonStr, err := GerenciadordeJson.InterfaceParaJsonString(p)
 	if err != nil {
 		t.Errorf("Erro ao converter interface{} para JSON: %v", err)
 	}
@@ -28,7 +28,7 @@ func TestJsonStringParaInterface(t *testing.T) {
 		"nome":  "João",
 		"idade": float64(30),
 	}
-	jsonData, err := Gerenciadordejson.JsonStringParaInterface(jsonStr)
+	jsonData, err := GerenciadordeJson.JsonStringParaInterface(jsonStr)
 	if err != nil {
 		t.Errorf("Erro ao converter JSON para interface{}: %v", err)
 	}
@@ -43,10 +43,7 @@ func compareMaps(m1, m2 map[string]interface{}) bool {
 	}
 	for k, v1 := range m1 {
 		v2, ok := m2[k]
-		if !ok {
-			return false
-		}
-		if v1 != v2 {
+		if !ok || v1 != v2 {
 			return false
 		}
 	}
