@@ -5,10 +5,18 @@ import (
 	"LogGuardian/src/database"
 	enum "LogGuardian/src/enum/log"
 	"LogGuardian/src/interfaces"
-	"LogGuardian/src/models"
+	models "LogGuardian/src/models/log"
 	"fmt"
+	"math/rand"
 	"time"
 )
+
+// Definindo um struct com três campos
+type DadosAleatorios struct {
+	Campo1 int
+	Campo2 string
+	Campo3 float64
+}
 
 func init() {
 	config.InicializarConfigurações()
@@ -23,6 +31,12 @@ func init() {
 }
 
 func TestarLog() {
+	DadosAleatorios := DadosAleatorios{
+		Campo1: rand.Intn(100),                                  // Número inteiro aleatório entre 0 e 99
+		Campo2: fmt.Sprintf("TextoAleatorio%d", rand.Intn(100)), // Uma string com texto aleatório
+		Campo3: rand.Float64() * 100,                            // Número de ponto flutuante aleatório entre 0 e 100
+	}
+
 	registro := models.Log{
 		Id:              1,
 		Codigo:          "ABC123",
@@ -32,7 +46,7 @@ func TestarLog() {
 		Linha:           42,
 		MensagemRetorno: "Retorno de erro",
 		MensagemErro:    "Erro ocorrido",
-		DadosAdicionais: map[string]interface{}{"chave": "valor"},
+		DadosAdicionais: DadosAleatorios,
 		DataHoraLog:     time.Now(),
 	}
 
