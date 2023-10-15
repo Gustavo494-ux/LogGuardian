@@ -4,7 +4,8 @@ import (
 	"LogGuardian/src/config"
 
 	"github.com/jmoiron/sqlx"
-	_ "github.com/mattn/go-sqlite3"
+	// Drive para SQLite GCC free
+	_ "modernc.org/sqlite"
 )
 
 func Conectar() (*sqlx.DB, error) {
@@ -17,6 +18,6 @@ func Conectar() (*sqlx.DB, error) {
 }
 
 func TestarConexao() (err error) {
-	_, err = sqlx.Open(config.DriverBanco, config.StringConexao)
+	_, err = Conectar()
 	return
 }

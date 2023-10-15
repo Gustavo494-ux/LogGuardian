@@ -3,9 +3,11 @@ package main
 import (
 	"LogGuardian/src/config"
 	"LogGuardian/src/database"
+	enum "LogGuardian/src/enum/log"
+	"LogGuardian/src/interfaces"
+	"LogGuardian/src/models"
 	"fmt"
 	"time"
-	// "log"
 )
 
 func init() {
@@ -20,5 +22,24 @@ func init() {
 	}
 }
 
+func TestarLog() {
+	registro := models.Log{
+		Id:              1,
+		Codigo:          "ABC123",
+		Tipo:            enum.TipoLog_FuncaoExecutada,
+		NomePacote:      "Pacote1",
+		NomeFuncao:      "Funcao1",
+		Linha:           42,
+		MensagemRetorno: "Retorno de erro",
+		MensagemErro:    "Erro ocorrido",
+		DadosAdicionais: map[string]interface{}{"chave": "valor"},
+		DataHoraLog:     time.Now(),
+	}
+
+	intt := interfaces.NovaInterfaceDeLog(&registro)
+	intt.Criar()
+}
+
 func main() {
+	TestarLog()
 }
