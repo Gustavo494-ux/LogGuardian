@@ -4,7 +4,7 @@ import (
 	"LogGuardian/src/config"
 	"LogGuardian/src/database"
 	enum "LogGuardian/src/enum/log"
-	"LogGuardian/src/interfaces"
+	interfaces "LogGuardian/src/interfaces/log"
 	models "LogGuardian/src/models/log"
 	"fmt"
 	"math/rand"
@@ -39,8 +39,8 @@ func TestarLog() {
 
 	registro := models.Log{
 		Id:              1,
-		Codigo:          "ABC123",
-		Tipo:            enum.TipoLog_FuncaoExecutada,
+		CodigoErro:      "ABC123",
+		Tipo:            enum.TipoLog_Erro,
 		NomePacote:      "Pacote1",
 		NomeFuncao:      "Funcao1",
 		Linha:           42,
@@ -52,6 +52,8 @@ func TestarLog() {
 
 	intt := interfaces.NovaInterfaceDeLog(&registro)
 	intt.Criar()
+
+	intt.BuscarPorTipo(string(enum.TipoLog_Erro))
 }
 
 func main() {

@@ -8,9 +8,9 @@ import (
 
 type Log struct {
 	Id              uint64       `json:"id,omitempty"`
-	Codigo          string       `json:"codigo,omitempty"`
+	CodigoErro      string       `json:"codigoErro,omitempty"`
 	Tipo            enum.TipoLog `json:"tipo,omitempty"`
-	NomePacote      string       `json:"NomePacote,omitempty"`
+	NomePacote      string       `json:"nomePacote,omitempty"`
 	NomeFuncao      string       `json:"nomeFuncao,omitempty"`
 	Linha           int          `json:"linha,omitempty"`
 	MensagemRetorno string       `json:"mensagemRetorno,omitempty"`
@@ -20,7 +20,7 @@ type Log struct {
 }
 
 func (log *Log) Validar() (err error) {
-	if len(log.Codigo) == 0 {
+	if len(log.CodigoErro) == 0 {
 		err = errors.New("o código é obrigatorio")
 		return
 	}
